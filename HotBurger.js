@@ -1,9 +1,13 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = 3000;
+const fs = require("fs");
 
 log = (arg) => {
-    console.log(`Loggin results for ${arg}`)
+    fs.appendFile("logs/logfile.txt", `Route ${arg} was received and response was sent\n`, (err) => {
+        if (err) console.log(err);
+        console.log("Successfully Written to File.");
+      });
 }
 app.get('/version', (req, res) => {
  log('/version');
@@ -13,6 +17,13 @@ app.get('/version', (req, res) => {
 
 app.get('/logs', (req, res) => {
     log('/logs');
+    fs.readFile("logs/logfile.txt", (err, data) => {
+    if (err) { console.log(err) }
+    let senddata = data.toString();
+    res.send(senddata);
+    });
+
+    
     
 });
 
