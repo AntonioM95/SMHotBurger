@@ -1,19 +1,27 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = 3000;
+const log = require('simple-node-logger').createSimpleFileLogger('project.log');
+const fs = require('fs');
 
-log = (arg) => {
+logging = (arg) => {
     console.log(`Loggin results for ${arg}`)
+    log.info(`Loggin results for ${arg}`);
 }
 app.get('/version', (req, res) => {
- log('/version');
+ logging('/version');
  res.send('This is version 0 of the HotBurger service')
 }
 );
 
 app.get('/logs', (req, res) => {
-    log('/logs');
-    
+    logging('/logs');
+    fs.readFile('project.log', 'utf8', (err,data) => {
+        if(err){
+            throw err;
+        }
+        res.send(data.toString())
+    })
 });
 
 
