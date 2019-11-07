@@ -4,6 +4,13 @@ const port = 3000;
 const log = require('simple-node-logger').createSimpleFileLogger('project.log');
 const fs = require('fs');
 
+const menu = {
+    Hotdog: $20,
+    Hamburger: $35,
+    Soda: $4,
+    Cookie: $6
+}
+
 logging = (arg) => {
     console.log(`Loggin results for ${arg}`)
     log.info(`Loggin results for ${arg}`);
@@ -23,6 +30,12 @@ app.get('/logs', (req, res) => {
         res.send(data.toString())
     })
 });
+
+app.get('/getmenu', (req, res) => {
+    logging('/getmenu');
+    res.send(menu);
+}
+);
 
 
 app.listen(port, () => console.log(`A new connection has been made`));
