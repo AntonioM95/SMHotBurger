@@ -5,10 +5,10 @@ const log = require('simple-node-logger').createSimpleFileLogger('project.log');
 const fs = require('fs');
 
 const menu = {
-    Hotdog: $20,
-    Hamburger: $35,
-    Soda: $4,
-    Cookie: $6
+    Hotdog: '$20',
+    Hamburger: '$35',
+    Soda: '$4',
+    Cookie: '$6'
 }
 
 logging = (arg) => {
