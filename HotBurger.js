@@ -29,7 +29,7 @@ app.get('/version', (req, res) => {
 
 app.get('/logs', (req, res) => {
     logging('/logs');
-    fs.readFile('project.log', 'utf8', (err,data) => {
+    fs.readFile('monitoringlogs.log', 'utf8', (err,data) => {
         if(err){
             throw err;
         }
