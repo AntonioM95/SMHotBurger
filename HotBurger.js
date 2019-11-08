@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const log = require('simple-node-logger').createSimpleFileLogger('Monitoring/monitoringlogs.log');
+const log = require('simple-node-logger').createSimpleFileLogger('./Monitoring/monitoringlogs.log');
 const fs = require('fs');
 
 const menu = {
