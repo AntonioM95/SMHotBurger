@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const log = require('simple-node-logger').createSimpleFileLogger('./Monitoring/monitoringlogs.log');
+const log = require('simple-node-logger').createSimpleFileLogger('/Monitoring/monitoringlogs.log');
 const fs = require('fs');
 
 const menu = {
@@ -29,8 +29,9 @@ app.get('/version', (req, res) => {
 
 app.get('/logs', (req, res) => {
     logging('/logs');
-    fs.readFile('monitoringlogs.log', 'utf8', (err,data) => {
+    fs.readFile('./Monitoring/monitoringlogs.log', 'utf8', (err,data) => {
         if(err){
+            console.log(err);
             throw err;
         }
         res.send(data.toString())
