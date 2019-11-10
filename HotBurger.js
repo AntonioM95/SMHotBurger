@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const log = require('simple-node-logger').createSimpleFileLogger('./Monitoring/monitoringlogs.log');
+const log = require('simple-node-logger').createSimpleFileLogger('./Monitoring/monitoring.log');
 const fs = require('fs');
 
 const menu = {
@@ -36,17 +36,6 @@ app.get('/version', (req, res) => {
  res.send('This is version 0 of the HotBurger service')
 }
 );
-
-app.get('/logs', (req, res) => {
-    logging('/logs');
-    fs.readFile('./Monitoring/monitoringlogs.log', 'utf8', (err,data) => {
-        if(err){
-            console.log(err);
-            throw err;
-        }
-        res.send(data.toString())
-    })
-});
 
 app.get('/getmenu', (req, res) => {
     logging('/getmenu');
