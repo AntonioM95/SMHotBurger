@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 80;
+const port = 3000;
 const log = require('simple-node-logger').createSimpleFileLogger('./Monitoring/monitoringlogs.log');
 const fs = require('fs');
 
@@ -11,14 +11,24 @@ const menu = {
     Cookie: '$6'
 }
 
+getPrice = (item) => {
+    const price = Object.keys(menu).filter((key, index) => {
+        console.log(menu[key]);
+        if(key.toString().toLowerCase() === item.toString().toLowerCase()){
+            return key
+        };
+    });
+    return menu[price];
+}
 
 logging = (arg) => {
-    console.log(`Loggin results for ${arg}`)
+    console.log(`Loggin results for ${arg}`);
     log.info(`Loggin results for ${arg} at ${new Date().toJSON()}` );
 }
 
 logPurchase = (purchase) => {
-    log.info(`Purchase of item:${purchase.item} count:${purchase.quantity}`)
+    itemPrice = getPrice(purchase.item);
+    log.info(`Purchase of item: ${purchase.item} count: ${purchase.quantity} price: ${itemPrice} at ${new Date().toJSON()}`)
 }
 
 app.get('/version', (req, res) => {
@@ -46,7 +56,7 @@ app.get('/getmenu', (req, res) => {
 
 app.post('/purchase/:item/:quantity', (req, res) =>{
     logPurchase(req.params);
-    res.send(200);
+    res.sendStatus(200);
 });
 
 
