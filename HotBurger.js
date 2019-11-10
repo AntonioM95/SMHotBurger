@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 80;
 const log = require('simple-node-logger').createSimpleFileLogger('./Monitoring/monitoringlogs.log');
 const fs = require('fs');
 
@@ -14,11 +14,11 @@ const menu = {
 
 logging = (arg) => {
     console.log(`Loggin results for ${arg}`)
-    log.info(`Loggin results for ${arg}`);
+    log.info(`Loggin results for ${arg} at ${new Date().toJSON()}` );
 }
 
 logPurchase = (purchase) => {
-    log.info(`Purchase of :${purchase.item} :${purchase.quantity}`)
+    log.info(`Purchase of item:${purchase.item} count:${purchase.quantity}`)
 }
 
 app.get('/version', (req, res) => {
