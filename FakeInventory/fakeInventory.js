@@ -9,8 +9,6 @@ const menu = {
     Cookie: 5
 }
 
-
-
 app.get('/getcount/:item', (req, res) => {
     const item = req.params.item;
     const available = menu[item];
