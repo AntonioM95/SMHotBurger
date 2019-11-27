@@ -20,13 +20,13 @@ update = (err, res, body) => {
 
     if(item[1] !== 0) {
         const amount = itemBody[1] -1;
-        request.post(`ec2-user@ec2-54-242-189-245.compute-1.amazonaws.com:3002/setcount/${item}/${amount}`, {} , (err, res, body) => {
+        request.post(`ec2-54-242-189-245.compute-1.amazonaws.com:3002/setcount/${item}/${amount}`, {} , (err, res, body) => {
         if (err) { return console.log(err); }
         console.log(`statuscode: ${res.statusCode}`);
         console.log(body);
       });
     }else {
-        request.post(`ec2-user@ec2-54-242-189-245.compute-1.amazonaws.com:3002/setcount/${item[0]}/${0}`, {} , (err, res, body) => {
+        request.post(`ec2-54-242-189-245.compute-1.amazonaws.com:3002/setcount/${item[0]}/${0}`, {} , (err, res, body) => {
         if (err) { return console.log(err); }
         console.log(`statuscode: ${res.statusCode}`);
         console.log(body);
@@ -35,7 +35,7 @@ update = (err, res, body) => {
 }
 
 validatePurchase = (purchase) =>{
-    request(`ec2-user@ec2-54-242-189-245.compute-1.amazonaws.com:3002/getcount/${purchase.item}`, update);
+    request(`ec2-54-242-189-245.compute-1.amazonaws.com:3002/getcount/${purchase.item}`, update);
 }
 
 getPrice = (item) => {
