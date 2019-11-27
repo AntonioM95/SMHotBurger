@@ -9,7 +9,7 @@ const menu = {
 
 const purchase = (item, amount) =>{
     console.log("Purchasing");
-    request.post(`ip-172-31-27-234.ec2.internal/purchase/${item}/${amount}`, {} , (err, res, body) => {
+    request.post(`http://api/purchase/${item}/${amount}`, {} , (err, res, body) => {
         if (err) { return console.log(err); }
         console.log(`statuscode: ${res.statusCode}`);
         console.log(body);
